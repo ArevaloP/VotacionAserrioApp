@@ -1,0 +1,81 @@
+
+<app-loading *ngIf="isLoading; else PanelTemplate"></app-loading>
+
+<ng-template #PanelTemplate>
+    <div class="panel">
+        <form action=""
+            [formGroup]="FormReactive"
+            (ngSubmit)="votar()" >
+            <header class="header header--panel contenedor">
+                <div class="header__logo logo--panel">
+                    <img src="./../../../../assets/img/logo.svg" alt="Logo">
+                </div>
+                <nav class="navegacion">
+                    <a (click)="salir()" class="navegacion__link">Salir</a>
+                </nav>
+            </header>
+            
+            
+            <section class="binvenida contenedor">
+                <h2 class="bienvenida__heading">Bienvenido(a) {{estudiante.nombre}} {{estudiante.apellido}}</h2>
+                <p class="bienvenida__texto">{{estudiante.grado}}</p>
+            </section>
+            
+            <app-laoding-panel *ngIf="!isReady; else Candidatos"></app-laoding-panel>
+            
+            <ng-template #Candidatos>
+                <section class="personeros contenedor">
+                    <h2 class="personeros__heading">Personería</h2>
+                    <div class="personeros__grid">
+        
+                        <div *ngFor="let personero of personeros">
+                            <div class="personero personero_tarjeta" (click)="clickPersoneroTs(personero.id);" [id]="personero.id">
+                                <header class="personero__header">
+                                    <div class="personero__imagen">
+                                        <img [src]="personero.img" alt="personero">
+                                    </div>
+                                    <div class="personero__informacion">
+                                        <p class="personero__nombre">{{personero.nombre | titlecase}} {{personero.apellido | titlecase}}</p>
+                                        <p class="personero__cargo">{{personero.puesto}}</p>
+                                    </div>
+                                </header>
+                                <blockquote class="personero__numero">
+                                    {{personero.numero}}
+                                </blockquote>
+                            </div>
+                        </div>
+        
+                    </div>
+                </section>
+        
+                <section class="personeros contenedor">
+                    <h2 class="personeros__heading">Contraloría</h2>
+                    <div class="personeros__grid">
+        
+                        <div *ngFor="let contralor of contralores">
+                            <div class="personero contralor_tarjeta" (click)="clickContralorTs(contralor.id);" [id]="contralor.id">
+                                <header class="personero__header">
+                                    <div class="personero__imagen">
+                                        <img [src]="contralor.img" alt="personero">
+                                    </div>
+                                    <div class="personero__informacion">
+                                        <p class="personero__nombre">{{contralor.nombre | titlecase}} {{contralor.apellido | titlecase}}</p>
+                                        <p class="personero__cargo">{{contralor.puesto}}</p>
+                                    </div>
+                                </header>
+                                <blockquote class="personero__numero">
+                                    {{contralor.numero}}
+                                </blockquote>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+        
+                <section class="contenedor section-btn">
+                    <input type="submit" value="Votar" class="btn"/>
+                </section>
+            </ng-template>
+         
+        </form>
+    </div>
+</ng-template>

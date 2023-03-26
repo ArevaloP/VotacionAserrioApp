@@ -1,0 +1,37 @@
+<app-loading *ngIf="isLoadingResp || procesarPeticion; else inicioVotar"></app-loading>
+
+<ng-template #inicioVotar>
+    <header class="header--bg">
+        <div class="header contenedor">
+            <div class="header__logo">
+                <img src="./../../../../assets/img/logo.svg" alt="Logo">
+            </div>
+            <nav class="navegacion">
+                <a (click)="navegar('/in')" class="navegacion__link navegacion__link--iniciar">Administrar</a>
+                <a (click)="navegar('/invotar')" class="navegacion__link navegacion__link--iniciar">Votar</a>
+            </nav>
+        </div>
+    </header>
+    
+    <section class="iniciar contenedor">
+        <div class="inicar__grid">
+            <div class="iniciar__contenido">
+                <h2 class="iniciar__heading">Votar</h2>
+                <form   autocomplete="off"
+                        [formGroup]="FormReactive"
+                        (ngSubmit)="ingresar()"
+                        >
+                    <div class="campo">
+                        <label for="usuario" class="campo__label">Numero de documento</label>
+                        <input formControlName="documento" type="text" class="campo__input" name="documento" id="documento">
+                        <small class="msg" *ngIf="campoValid('documento')">{{documentoMsg}}</small>
+                    </div>
+                    <input [disabled]="FormReactive.invalid" type="submit" class="btn" value="A Votar"/>
+                </form>
+            </div>
+            <div class="iniciar__imagen">
+                <img src="./../../../../assets/img/vector_iniciar.svg" alt="Imagen Avotar">
+            </div>
+        </div>
+    </section>
+</ng-template>

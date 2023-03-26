@@ -1,0 +1,42 @@
+
+<app-loading *ngIf="isLoadingAuth || this.procesarPeticion; else AuthAdministrador" ></app-loading>
+
+<ng-template #AuthAdministrador>
+    <header class="header--bg">
+        <div class="header contenedor">
+            <div class="header__logo">
+                <img src="./../../../../assets/img/logo.svg" alt="Logo">
+            </div>
+            <nav class="navegacion">
+                <a (click)="navegar('/in')" class="navegacion__link navegacion__link--iniciar">Administrar</a>
+                <a (click)="navegar('/invotar')" class="navegacion__link navegacion__link--iniciar">Votar</a>
+            </nav>
+        </div>
+    </header>
+    
+    <section class="iniciar contenedor">
+        <div class="inicar__grid">
+            <div class="iniciar__contenido">
+                <h2 class="iniciar__heading">Administrar</h2>
+                <form autocomplete="off"
+                    [formGroup]="FormReactive"
+                    (ngSubmit)="login()">
+                    <div class="campo">
+                        <label for="usuario" class="campo__label">Usuario</label>
+                        <input formControlName="username" type="text" class="campo__input" name="usuario" id="usuario">
+                        <small class="msg" *ngIf="campoValid('username')">{{usernameMsg}}</small>
+                    </div>
+                    <div class="campo">
+                        <label for="password" class="campo__label">Contreseña</label>
+                        <input formControlName="password" type="password" class="campo__input" name="password" id="password">
+                        <small class="msg" *ngIf="campoValid('password')">{{passwordMsg}}</small>
+                    </div>
+                    <input [disabled]="FormReactive.invalid" type="submit" class="btn" value="Ingresar" />
+                </form>
+            </div>
+            <div class="iniciar__imagen">
+                <img src="./../../../../assets/img/vector_iniciar.svg" alt="Imagen Avotar">
+            </div>
+        </div>
+    </section>
+</ng-template>

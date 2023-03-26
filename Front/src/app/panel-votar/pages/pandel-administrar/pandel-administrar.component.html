@@ -1,0 +1,56 @@
+
+
+<app-loading *ngIf="isLoading; else PanelAdministrador"></app-loading>
+
+<ng-template #PanelAdministrador>
+    <header class="header header--panel contenedor">
+        <div class="header__logo logo--panel">
+            <img src="./../../../../assets/img/logo.svg" alt="Logo">
+        </div>
+        <nav class="navegacion">
+            <a (click)="reiniciar()" class="navegacion__link">Reiniciar Votación</a>
+            <a (click)="salir()" class="navegacion__link">Salir</a>
+        </nav>
+    </header>
+    
+    <section class="resultados__personeria contenedor">
+    
+        <h2 class="bienvenida__heading">Resultados: Personeria</h2>
+    
+        <div class="resultados">
+    
+            <div class="bloque__resultados">
+    
+                <div class="divChart">
+                    <canvas id="personeros"></canvas>
+                </div>
+            </div>
+    
+            <div class="bloque__resultados">
+    
+                <div class="divChart">
+                    <canvas id="contralores"></canvas>
+                </div>
+            </div>
+    
+        </div>
+    
+    </section>
+    
+    <section class="resultados__personeria contenedor">
+    
+        <h2 class="bienvenida__heading">Estadistica</h2>
+    
+        <div class="resultados">
+    
+            <div class="bloque__resultados">
+    
+                <div class="divChart">
+                    <canvas id="estadistica"></canvas>
+                </div>
+            </div>
+    
+        </div>
+    
+    </section>
+</ng-template>
